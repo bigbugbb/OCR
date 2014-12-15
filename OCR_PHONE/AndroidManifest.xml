@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bigbug.ocr"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9" />
+
+    <application
+        android:name="com.bigbug.ocr.Application"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.bigbug.ocr.activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".activities.HandwriteActivity"
+            android:launchMode="singleInstance" >            
+        </activity>
+        
+        <activity
+			android:name=".activities.PhotoscanActivity"
+            android:launchMode="singleInstance" >
+        </activity>
+        
+        <activity
+			android:name=".activities.SettingActivity"
+            android:launchMode="singleInstance" >
+        </activity>
+        
+        <service android:name=".services.LoadModelService" android:enabled="true" />
+        
+        <receiver 
+            android:name=".broadcastreceivers.OcrBroadcastReceiver" >
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<action android:name=".broadcastreceivers.OcrBroadcastReceiver.START_SERVICE" />														
+				<category android:name="android.intent.category.HOME" />
+			</intent-filter>			             
+		</receiver>
+            
+    </application>
+
+    <!--
+		Allows an application to access coarse (e.g., Cell-ID, WiFi) location
+	-->
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+	<!-- Allows an application to access fine (e.g., GPS) location   -->
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+	<!--
+		Allows an application to access extra location provider commands
+	-->
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+	<!--
+		Allows an application to create mock location providers for testing
+	-->
+<!--	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
+
+	<!-- Allows applications to access information about networks   -->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+	<!--
+		Allows applications to access information about Wi-Fi networks
+	-->
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+	<!--
+		Allows an application to act as an AccountAuthenticator for the
+		AccountManager
+	-->
+	<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+
+	<!-- Allows an application to collect battery statistics   -->
+	<uses-permission android:name="android.permission.BATTERY_STATS" />
+
+
+	<!--
+		Must be required by device administration receiver, to ensure that
+		only the system can interact with it.
+	-->
+<!--	<uses-permission android:name="android.permission.BIND_DEVICE_ADMIN" />-->
+
+	<!--
+		Must be required by an InputMethodService, to ensure that only the
+		system can bind to it.
+	-->
+<!--	<uses-permission android:name="android.permission.BIND_INPUT_METHOD" />-->
+
+	<!--
+		Must be required by a WallpaperService, to ensure that only the system
+		can bind to it.
+	-->
+<!--	<uses-permission android:name="android.permission.BIND_WALLPAPER" />-->
+
+	<!-- Allows applications to connect to paired bluetooth devices   -->
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+
+	<!-- Allows applications to discover and pair bluetooth devices   -->
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+	<!-- Allows an application to broadcast sticky intents.  -->
+	<uses-permission android:name="android.permission.BROADCAST_STICKY" />
+
+	<!--
+		Allows an application to initiate a phone call without going through
+		the Dialer user interface for the user to confirm the call being
+		placed.
+	-->
+	<uses-permission android:name="android.permission.CALL_PHONE" />
+
+	<!-- Required to be able to access the camera device.  -->
+	<uses-permission android:name="android.permission.CAMERA" />
+
+	<!-- This is necessary so that the app can run on phones such as the Galaxy Y that do not have autofocus cameras (because asking for permission to the camera includes that by default -->
+	<uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+	
+	<!--
+		Allows an application to change whether an application component
+		(other than its own) is enabled or not.
+	-->
+<!--	<uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" />-->
+
+	<!--
+		Allows an application to modify the current configuration, such as
+		locale.
+	-->
+<!--	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />-->
+
+	<!-- Allows applications to change network connectivity state   -->
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+	<!-- Allows applications to enter Wi-Fi Multicast mode   -->
+	<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
+	<!-- Allows applications to change Wi-Fi connectivity state  -->
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+	<!--
+		Allows an application to clear the caches of all installed
+		applications on the device.
+	-->
+<!--	<uses-permission android:name="android.permission.CLEAR_APP_CACHE" />-->
+
+	<!-- Allows an application to clear user data   -->
+<!--	<uses-permission android:name="android.permission.CLEAR_APP_USER_DATA" />-->
+
+	<!-- Allows an application to delete cache files.  -->
+<!--	<uses-permission android:name="android.permission.DELETE_CACHE_FILES" />-->
+
+	<!-- Allows an application to delete packages.  -->
+<!--	<uses-permission android:name="android.permission.DELETE_PACKAGES" />-->
+
+	<!-- Allows  applications to RW to diagnostic resources.  -->
+<!--	<uses-permission android:name="android.permission.DIAGNOSTIC" />-->
+
+	<!-- Allows  applications to disable the keyguard   -->
+<!--	<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />-->
+
+	<!--
+		Allows an application to retrieve state dump information from system
+		services.
+	-->
+<!--	<uses-permission android:name="android.permission.DUMP" />-->
+
+	<!-- Allows an application to expand or collapse the status bar.  -->
+	<uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+
+	<!-- Allows  access to the flashlight   -->
+	<uses-permission android:name="android.permission.FLASHLIGHT" />
+
+	<!--
+		Allows access to the list of accounts in the Accounts Service
+	-->
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+	<!--
+		Allows an application to find out the space used by any package.
+	-->
+	<uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+
+	<!--
+		Allows an application to get information about the currently or
+		recently running tasks: a thumbnail representation of the tasks, what
+		activities are running in it, etc.
+	-->
+	<uses-permission android:name="android.permission.GET_TASKS" />
+
+	<!-- Allows  applications to open network sockets.  -->
+	<uses-permission android:name="android.permission.INTERNET" />
+
+	<!-- Allows an application to call killBackgroundProcesses(String).  -->
+	<uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+	<!--
+		Allows an applicatiedu.neu.android.mhealth.ucsmobile.USCMobileteens.SurveyActivityer
+	-->
+	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
+	<!-- Allows an application to modify global audio settings   -->
+	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+	<!-- Allows  formatting file systems for removable storage.  -->
+	<uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS" />
+
+	<!--
+		Allows mounting and unmounting file systems for removable storage.
+	-->
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+	<!-- Allows  applications to directly communicate over NFC   -->
+	<uses-permission android:name="android.permission.NFC" />
+
+	<!--
+		Allows an application to monitor, modify, or abort outgoing calls.
+	-->
+	<uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+
+	<!-- Allows an application to read the user's calendar data.  -->
+	<uses-permission android:name="android.permission.READ_CALENDAR" />
+
+	<!-- Allows an application to read the user's contacts data.  -->
+	<uses-permission android:name="android.permission.READ_CONTACTS" />
+
+	<!--
+		Allows an application to read (but not write) the user's browsing
+		history and bookmarks.
+	-->
+	<uses-permission android:name="android.permission.READ_HISTORY_BOOKMARKS" />
+
+	<!-- Allows an application to read the low-level system log files.  -->
+	<uses-permission android:name="android.permission.READ_LOGS" />
+
+	<!-- Allows  read only access to phone state.  -->
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+	<!-- Allows an application to read SMS messages.  -->
+	<uses-permission android:name="android.permission.READ_SMS" />
+
+	<!-- Allows  applications to read the sync settings   -->
+	<uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+
+	<!-- Allows  applications to read the sync stats   -->
+	<uses-permission android:name="android.permission.READ_SYNC_STATS" />
+
+	<!--
+		Allows an application to receive the ACTION_BOOT_COMPLETED that is
+		broadcast after the system finishes booting.
+	-->
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+	<!--
+		Allows an application to monitor incoming MMS messages, to record or
+		perform processing on them.
+	-->
+	<uses-permission android:name="android.permission.RECEIVE_MMS" />
+
+	<!--
+		Allows an application to monitor incoming SMS messages, to record or
+		perform processing on them.
+	-->
+	<uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+	<!-- Allows an application to monitor incoming WAP push messages.  -->
+	<uses-permission android:name="android.permission.RECEIVE_WAP_PUSH" />
+
+	<!-- Allows an application to record audio   -->
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+	<!-- Allows an application to change the Z-order of tasks   -->
+<!--	<uses-permission android:name="android.permission.REORDER_TASKS" />-->
+
+	<!-- Allows an application to send SMS messages.  -->
+	<uses-permission android:name="android.permission.SEND_SMS" />
+
+	<!--
+		Allows an application to broadcast an Intent to set an alarm for the
+		user.
+	-->
+	<uses-permission android:name="android.permission.SET_ALARM" />
+
+	<!--
+		Allows an application to control whether activities are immediately
+		finished when put in the background.
+	-->
+	<uses-permission android:name="android.permission.SET_ALWAYS_FINISH" />
+
+	<!-- Modify the global animation scaling factor.  -->
+	<uses-permission android:name="android.permission.SET_ANIMATION_SCALE" />
+
+	<!-- Configure an application for debugging.  -->
+<!--	<uses-permission android:name="android.permission.SET_DEBUG_APP" />-->
+
+	<!--
+		Allows an application to set the maximum number of (not needed)
+		application processes that can be running.
+	-->
+	<uses-permission android:name="android.permission.SET_PROCESS_LIMIT" />
+
+	<!-- Allows  applications to set the system time   -->
+<!--	<uses-permission android:name="android.permission.SET_TIME" />-->
+
+	<!-- Allows  applications to set the system time zone  -->
+<!--	<uses-permission android:name="android.permission.SET_TIME_ZONE" />-->
+
+	<!-- Allows  applications to set the wallpaper   -->
+	<uses-permission android:name="android.permission.SET_WALLPAPER" />
+
+	<!-- Allows  applications to set the wallpaper hints   -->
+	<uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
+
+	<!--
+		Allow an application to request that a signal be sent to all
+		persistent processes
+	-->
+<!--	<uses-permission android:name="android.permission.SIGNAL_PERSISTENT_PROCESSES" />-->
+
+	<!--
+		Allows an application to allow access the subscribed feeds
+		ContentProvider.
+	-->
+	<uses-permission android:name="android.permission.SUBSCRIBED_FEEDS_READ" />
+	<uses-permission android:name="android.permission.SUBSCRIBED_FEEDS_WRITE" />
+
+	<!--
+		Allows an application to open windows using the type
+		TYPE_SYSTEM_ALERT, shown on top of all other applications.
+	-->
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+	<!--
+		Allows an application to request authtokens from the AccountManager
+	-->
+	<uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+	<!-- Allows an application to use SIP service   -->
+	<uses-permission android:name="android.permission.USE_SIP" />
+
+	<!-- Allows  access to the vibrator   -->
+	<uses-permission android:name="android.permission.VIBRATE" />
+
+	<!--
+		Allows using PowerManager WakeLocks to keep processor from sleeping or
+		screen from dimming
+	-->
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+
+	<!-- Allows  applications to write the apn settings   -->
+	<uses-permission android:name="android.permission.WRITE_APN_SETTING" />
+
+	<!--
+		Allows an application to write (but not read) the user's calendar
+		data.
+	-->
+	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
+	<!--
+		Allows an application to write (but not read) the user's contacts
+		data.
+	-->
+	<uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
+	<!-- Allows an application to write to external storage   -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+	<!--
+		Allows an application to write (but not read) the user's browsing
+		history and bookmarks.
+	-->
+	<uses-permission android:name="android.permission.WRITE_HISTORY_BOOKMARKS" />
+
+	<!-- Allows an application to read or write the system settings.  -->
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+	<!-- Allows an application to write SMS messages.  -->
+	<uses-permission android:name="android.permission.WRITE_SMS" />
+
+	<!-- Allows  applications to write the sync settings   -->
+	<uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+	
+</manifest>

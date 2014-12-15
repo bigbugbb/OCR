@@ -1,0 +1,24 @@
+# training data with 128 features
+TRAINING_DATA_PATH=./dataset/training.arff
+TEST_DATA_PATH=./dataset/test.arff
+
+# training data with 152 features
+TRAINING_DATA_MORE_FEATURES_PATH=./dataset/training_extra.arff
+TEST_DATA_MORE_FEATURES_PATH=./dataset/test_extra.arff
+
+# only ANN uses csv file for training and testing
+ANN_TRAINING_DATA_PATH=./dataset/tiny_dataset_for_ANN/training.csv
+ANN_TEST_DATA_PATH=./dataset/tiny_dataset_for_ANN/test.csv
+ANN_TRAINING_DATA_MORE_FEATURES_PATH=./dataset/tiny_dataset_for_ANN/training_extra_6500.csv
+ANN_TEST_DATA_MORE_FEATURES_PATH=./dataset/tiny_dataset_for_ANN/test_extra.csv
+
+# flag to toggle between 128 features and 152 features
+# if USE_MORE FEATURES is true, use 152 features, 
+# otherwise use 128 features
+USE_MORE_FEATURES=true
+
+# paths for the deserialization/serialization of the trained model 
+# from different algorithms
+ANN_TRAINED_MODEL_PATH=./model/ann.model
+NB_TRAINED_MODEL_PATH=./model/nb.model
+SVM_TRAINED_MODEL_PATH=./model/svm.model

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/gray"
+    android:orientation="vertical" >
+    
+    <com.bigbug.ocr.views.HandwriteView
+        android:id="@+id/view_handwrite"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"	               
+        android:layout_margin="16dip"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/handwriting_area" />
+
+    <TextView 
+        android:id="@+id/view_result"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/view_handwrite"
+        android:layout_alignParentBottom="true"
+        android:padding="16dip"    
+        android:textSize="20sp"
+        android:background="@color/l_yellow" />
+
+</RelativeLayout>
